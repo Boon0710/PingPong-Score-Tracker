@@ -10,6 +10,7 @@ const p2 = {
 }
 
 const resetButton = document.querySelector('#reset');
+const returnButton = document.querySelector('#return');
 const winningScoreSelect = document.querySelector('#playTo');
 let winningScore = 3;
 let isGameOver = false;
@@ -18,7 +19,7 @@ let fireworksInterval;
 function updateScores(player, opponent) {
     if (!isGameOver) {
         player.score += 1;
-        if (player.score >= winningScore && (player.score - opponent.score >= 2)) { 
+        if (player.score >= winningScore && (player.score - opponent.score >= 2)) {
             isGameOver = true;
             player.display.classList.add('has-text-success');
             opponent.display.classList.add('has-text-danger');
@@ -45,6 +46,12 @@ winningScoreSelect.addEventListener('change', function () {
 })
 
 resetButton.addEventListener('click', reset)
+returnButton.addEventListener('click', function () {
+    document.getElementById('firstCard').style.display = 'block';
+    document.getElementById('secondCard').style.display = 'none';
+
+    reset();
+})
 
 function reset() {
     isGameOver = false;
@@ -73,7 +80,7 @@ function triggerFireworks() {
         clearInterval(fireworksInterval);  // Clear existing interval if any
     }
 
-    fireworksInterval = setInterval(function() {
+    fireworksInterval = setInterval(function () {
         var timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
@@ -90,7 +97,7 @@ function triggerFireworks() {
 
 const setNameButton = document.querySelector('#setName');
 
-setNameButton.addEventListener('click', function() {
+setNameButton.addEventListener('click', function () {
     const p1NameInput = document.querySelector('#p1NameInput');
     const p2NameInput = document.querySelector('#p2NameInput');
     const p1NameDisplay = document.querySelector('#p1NameDisplay');
@@ -106,4 +113,4 @@ setNameButton.addEventListener('click', function() {
 });
 
 
-    
+
